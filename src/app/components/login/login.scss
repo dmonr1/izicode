@@ -1,0 +1,79 @@
+@import url('https://fonts.googleapis.com/css2?family=Oxanium:wght@300;400;700&display=swap');
+
+.cont-general {
+  font-family: 'Oxanium', sans-serif;
+  width: 100vw;
+  height: 100vh;
+  background: #1d1c1c;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  .mensaje {
+    font-size: 24px;
+    color: white;
+    text-align: center;
+    min-height: 130px;
+  }
+
+  .linea, .linea-2 {
+    display: inline-block;
+  }
+
+  .linea-2 {
+    margin: 5px;
+  }
+
+  .cursor {
+    border-right: 2px solid white;
+    animation: blink 0.75s step-end infinite;
+  }
+
+  .autor {
+    display: block;
+    margin-top: 12px;
+    font-size: 18px;
+    font-style: italic;
+    color: #ccc;
+    text-align: right;
+    opacity: 0;
+    transform: translateY(10px);
+    transition: opacity 1.5s ease, transform 1.5s ease;
+  }
+
+  .autor.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  @keyframes blink {
+    50% {
+      border-color: transparent;
+    }
+  }
+
+  .boton-corazon {
+    margin-top: 20px;
+    text-align: center;
+    animation: fadeIn 1.2s ease forwards;
+    opacity: 0;
+  }
+  
+  .fade-in {
+    animation: fadeIn 1.2s ease forwards;
+  }
+  
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+      transform: scale(0.8);
+    }
+    to {
+      opacity: 1;
+      transform: scale(1);
+    }
+  }
+  
+
+  
+}

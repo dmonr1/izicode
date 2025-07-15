@@ -1,0 +1,15 @@
+<div class="cont-general">
+  <p class="mensaje">
+    <span class="linea" [class.cursor]="showCursor1">{{ typedLine1 }}</span><br />
+    <span class="linea-2" [class.cursor]="showCursor2">{{ typedLine2 }}</span><br />
+    <span class="autor" [class.visible]="showAuthor">— Pablo Neruda</span>
+  </p>
+
+  <div class="boton-corazon" *ngIf="showButton">
+    <button nz-button nzShape="circle" nzType="default" class="fade-in">
+      <span nz-icon nzType="heart" nzTheme="fill" style="color: #eb2f96;"></span>
+    </button>
+  </div>
+
+  
+</div>
