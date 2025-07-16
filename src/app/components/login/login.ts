@@ -21,9 +21,8 @@ export class Login implements OnInit {
   showCursor2 = false;
   showAuthor = false;
   showButton = false;
-
-   expande = false;
-  avatarVisible = false; // ✅ Nueva variable
+  expande = false;
+  avatarVisible = false;
 
 
 
@@ -37,22 +36,22 @@ export class Login implements OnInit {
 
         setTimeout(() => {
           this.showAuthor = true;
-        }, 800); 
+        }, 800);
         setTimeout(() => {
           this.showButton = true;
-        }, 2300); 
+        }, 2300);
       });
     });
   }
 
- expandirCirculo() {
+  expandirCirculo() {
     this.expande = true;
     setTimeout(() => {
       this.avatarVisible = true;
-    }, 800); // espera un poco después del círculo expandido
+    }, 300); 
   }
 
-  
+
   typeLine(text: string, line: number, callback: () => void) {
     let i = 0;
     const interval = setInterval(() => {

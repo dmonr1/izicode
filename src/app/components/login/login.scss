@@ -9,7 +9,6 @@
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  /* ✅ Dirección vertical */
 
   .mensaje {
     font-size: 24px;
@@ -192,12 +191,12 @@
   top: 49%;
   left: 49.7%;
   width: 18vw;
-  height: 18vw;
+  height: 18.3vw;
   border-radius: 50%;
   object-fit: cover;
-  transform: translate(-50%, -50%) scale(0.8);
+  transform: translate(-50%, -50%) scale(0.4);
   opacity: 0;
-  transition: opacity 1s ease 0.4s, transform 1s ease 0.4s;
+  transition: opacity 1s ease 0.4s, transform 1s ease 0.2s;
   z-index: 20;
   pointer-events: none;
 }
@@ -206,3 +205,4 @@
   opacity: 1;
   transform: translate(-50%, -50%) scale(1);
 }
+
