@@ -22,22 +22,37 @@ export class Login implements OnInit {
   showAuthor = false;
   showButton = false;
 
+   expande = false;
+  avatarVisible = false; // ✅ Nueva variable
+
+
+
   ngOnInit(): void {
     this.typeLine(this.line1, 1, () => {
       this.showCursor1 = false;
       this.showCursor2 = true;
+
       this.typeLine(this.line2, 2, () => {
         this.showCursor2 = false;
+
         setTimeout(() => {
           this.showAuthor = true;
-          setTimeout(() => {
-            this.showButton = true;
-          }, 1000);
-        }, 600);
+        }, 800); 
+        setTimeout(() => {
+          this.showButton = true;
+        }, 2300); 
       });
     });
   }
 
+ expandirCirculo() {
+    this.expande = true;
+    setTimeout(() => {
+      this.avatarVisible = true;
+    }, 800); // espera un poco después del círculo expandido
+  }
+
+  
   typeLine(text: string, line: number, callback: () => void) {
     let i = 0;
     const interval = setInterval(() => {
@@ -49,6 +64,6 @@ export class Login implements OnInit {
         clearInterval(interval);
         callback();
       }
-    }, 100); 
+    }, 100);
   }
 }

@@ -8,6 +8,8 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  flex-direction: column;
+  /* ✅ Dirección vertical */
 
   .mensaje {
     font-size: 24px;
@@ -16,7 +18,8 @@
     min-height: 130px;
   }
 
-  .linea, .linea-2 {
+  .linea,
+  .linea-2 {
     display: inline-block;
   }
 
@@ -27,6 +30,11 @@
   .cursor {
     border-right: 2px solid white;
     animation: blink 0.75s step-end infinite;
+  }
+
+  p {
+    margin-top: 0;
+    margin-bottom: 10PX !important;
   }
 
   .autor {
@@ -53,27 +61,148 @@
   }
 
   .boton-corazon {
-    margin-top: 20px;
-    text-align: center;
-    animation: fadeIn 1.2s ease forwards;
     opacity: 0;
-  }
-  
-  .fade-in {
-    animation: fadeIn 1.2s ease forwards;
-  }
-  
-  @keyframes fadeIn {
-    from {
-      opacity: 0;
-      transform: scale(0.8);
-    }
-    to {
-      opacity: 1;
-      transform: scale(1);
-    }
-  }
-  
+    pointer-events: none;
+    display: flex;
+    justify-content: center;
+    animation: none;
 
-  
+    &.visible {
+      opacity: 1;
+      pointer-events: auto;
+      animation: scaleIn 1s ease-out forwards;
+
+      button {
+        animation: pulseSoft 3s ease-in-out infinite;
+      }
+    }
+
+    button {
+      width: 50px;
+      height: 50px;
+      padding: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      border-radius: 50%;
+      border: none;
+      background: linear-gradient(145deg, rgba(255, 255, 255, 0.12), rgba(255, 255, 255, 0.05));
+      backdrop-filter: blur(10px);
+      box-shadow:
+        0 4px 12px rgba(0, 0, 0, 0.6),
+        0 0 8px rgba(235, 47, 150, 0.3),
+        inset 0 1px 3px rgba(255, 255, 255, 0.15),
+        inset 0 -2px 5px rgba(0, 0, 0, 0.2);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    button:hover {
+      transform: scale(1.05);
+      box-shadow:
+        0 6px 18px rgba(0, 0, 0, 0.65),
+        0 0 10px rgba(235, 47, 150, 0.45),
+        inset 0 1px 4px rgba(255, 255, 255, 0.2),
+        inset 0 -3px 6px rgba(0, 0, 0, 0.25);
+    }
+
+    span[nz-icon] {
+      font-size: 20px;
+      color: #eb2f96;
+      filter: drop-shadow(0 0 6px rgba(235, 47, 150, 0.35));
+      transition: transform 0.3s ease;
+    }
+
+    button:hover span[nz-icon] {
+      transform: scale(1.02);
+    }
+  }
+
+
+  @keyframes scaleIn {
+    0% {
+      transform: scale(0.3);
+      opacity: 0;
+    }
+
+    100% {
+      transform: scale(1);
+      opacity: 1;
+    }
+  }
+
+  @keyframes pulseSoft {
+    0% {
+      transform: scale(1);
+      box-shadow:
+        0 4px 12px rgba(0, 0, 0, 0.6),
+        0 0 8px rgba(235, 47, 150, 0.3),
+        inset 0 1px 3px rgba(255, 255, 255, 0.15),
+        inset 0 -2px 5px rgba(0, 0, 0, 0.2);
+    }
+
+    50% {
+      transform: scale(1.05);
+      box-shadow:
+        0 6px 18px rgba(0, 0, 0, 0.65),
+        0 0 10px rgba(235, 47, 150, 0.45),
+        inset 0 1px 4px rgba(255, 255, 255, 0.2),
+        inset 0 -3px 6px rgba(0, 0, 0, 0.25);
+    }
+
+    100% {
+      transform: scale(1);
+      box-shadow:
+        0 4px 12px rgba(0, 0, 0, 0.6),
+        0 0 8px rgba(235, 47, 150, 0.3),
+        inset 0 1px 3px rgba(255, 255, 255, 0.15),
+        inset 0 -2px 5px rgba(0, 0, 0, 0.2);
+    }
+  }
+
+}
+
+.oculto {
+  opacity: 0;
+  transition: opacity 0.6s ease;
+}
+
+.expansion-circle {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  background-color: #eb2f96;
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  transition: width 1s ease, height 1s ease, opacity 1s ease;
+  z-index: 10;
+  opacity: 0;
+}
+
+.expansion-circle.expandido {
+  width: 16vw;
+  height: 16vw;
+  opacity: 1;
+  transition: width 1.2s ease, height 1.2s ease, opacity 1s ease;
+}
+
+.avatar-img {
+  position: absolute;
+  top: 49%;
+  left: 49.7%;
+  width: 18vw;
+  height: 18vw;
+  border-radius: 50%;
+  object-fit: cover;
+  transform: translate(-50%, -50%) scale(0.8);
+  opacity: 0;
+  transition: opacity 1s ease 0.4s, transform 1s ease 0.4s;
+  z-index: 20;
+  pointer-events: none;
+}
+
+.avatar-img.visible {
+  opacity: 1;
+  transform: translate(-50%, -50%) scale(1);
 }

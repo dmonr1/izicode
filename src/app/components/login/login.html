@@ -1,15 +1,21 @@
 <div class="cont-general">
-  <p class="mensaje">
+  <p class="mensaje" [class.oculto]="expande">
     <span class="linea" [class.cursor]="showCursor1">{{ typedLine1 }}</span><br />
     <span class="linea-2" [class.cursor]="showCursor2">{{ typedLine2 }}</span><br />
     <span class="autor" [class.visible]="showAuthor">— Pablo Neruda</span>
   </p>
 
-  <div class="boton-corazon" *ngIf="showButton">
-    <button nz-button nzShape="circle" nzType="default" class="fade-in">
+  <!-- Círculo que se expande -->
+  <div class="expansion-circle" [class.expandido]="expande"></div>
+
+  <!-- Avatar -->
+  <!-- Avatar -->
+  <img src="assets/avatar-nico.png" alt="Avatar" class="avatar-img" [class.visible]="avatarVisible" />
+
+  <!-- Botón corazón al frente siempre -->
+  <div class="boton-corazon" [class.visible]="showButton" (click)="expandirCirculo()">
+    <button nz-button nzShape="circle" nzType="default">
       <span nz-icon nzType="heart" nzTheme="fill" style="color: #eb2f96;"></span>
     </button>
   </div>
-
-  
 </div>
