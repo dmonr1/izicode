@@ -24,33 +24,31 @@ export class Login implements OnInit {
   expande = false;
   avatarVisible = false;
 
-
+  avatars: string[] = [
+    'assets/nico-1.png',
+    'assets/avatar_centrado.png',
+    'assets/nico2.png'
+  ];
 
   ngOnInit(): void {
     this.typeLine(this.line1, 1, () => {
       this.showCursor1 = false;
       this.showCursor2 = true;
-
+  
       this.typeLine(this.line2, 2, () => {
         this.showCursor2 = false;
-
-        setTimeout(() => {
-          this.showAuthor = true;
-        }, 800);
-        setTimeout(() => {
-          this.showButton = true;
-        }, 2300);
+  
+        setTimeout(() => this.showAuthor = true, 300);
+        setTimeout(() => this.showButton = true, 1200);
       });
     });
-  }
+  
+   }
+
 
   expandirCirculo() {
-    this.expande = true;
-    setTimeout(() => {
-      this.avatarVisible = true;
-    }, 300); 
+    this.avatarVisible = true;
   }
-
 
   typeLine(text: string, line: number, callback: () => void) {
     let i = 0;
