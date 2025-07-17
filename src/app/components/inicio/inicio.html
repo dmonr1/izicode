@@ -1,0 +1,39 @@
+<div class="cont-general">
+    <p class="mensaje" *ngIf="!avatarVisible">
+        <span class="linea" [class.cursor]="showCursor1">{{ typedLine1 }}</span><br />
+        <span class="linea-2" [class.cursor]="showCursor2">{{ typedLine2 }}</span><br />
+        <span class="autor" [class.visible]="showAuthor">— Pablo Neruda</span>
+    </p>
+
+    <div class="carousel-container" *ngIf="avatarVisible">
+        <div *ngFor="let avatar of visibleAvatars; let i = index" class="avatar-wrapper"
+            [ngClass]="{ 'center': i === 1, 'side': i !== 1 }" (click)="i === 1 && avatarSeleccionado(i)">
+            <div class="avatar-circle" [ngClass]="{
+             'circle-center': i === 1,
+             'circle-side': i !== 1,
+             'circle-expand-center': avatarVisible && i === 1,
+             'circle-expand-side': avatarVisible && i !== 1
+           }"></div>
+
+            <img [src]="avatar" [ngClass]="{
+          'avatar-img-center': i === 1,
+          'avatar-img-side': i !== 1,
+          'avatar-fade-center': avatarVisible && i === 1,
+          'avatar-fade-side': avatarVisible && i !== 1,
+        }" />
+        </div>
+    </div>
+
+    <p class="mensaje-seleccion" *ngIf="avatarVisible">
+        Selecciona el avatar según cómo te sientes
+    </p>
+
+    <div class="boton-corazon" *ngIf="!avatarVisible" [class.visible]="showButton" (click)="expandirCirculo()">
+        <button nz-button nzShape="circle" nzType="default">
+            <span nz-icon nzType="heart" nzTheme="fill" style="color: #eb2f96;"></span>
+        </button>
+    </div>
+
+</div>
+
+<div class="telon" [class.bajar]="iniciarTransicion"></div>

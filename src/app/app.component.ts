@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { RouterLink, RouterOutlet, Router } from '@angular/router';
 import { NzIconModule } from 'ng-zorro-antd/icon';
 import { NzLayoutModule } from 'ng-zorro-antd/layout';
@@ -12,14 +12,21 @@ import { CommonModule } from '@angular/common';
   styleUrl: './app.component.scss',
   standalone: true
 })
-export class AppComponent {
+export class AppComponent implements OnInit {
   isCollapsed = false;
 
   constructor(
     private router: Router,
   ) {
   }
-  isLoginPage(): boolean {
-    return this.router.url === '/login' || this.router.url === '/';
+
+  ngOnInit(): void {
+    
   }
+
+  isLoginPage(): boolean {
+    return this.router.url === '/inicio' || this.router.url === '/login' || this.router.url === '/core' || this.router.url === '/feliz' || this.router.url === '/triste' ||this.router.url === '/';
+  }
+
+
 }
