@@ -119,7 +119,7 @@ export class Inicio implements OnInit {
 
   expandirCirculo() {
     this.startupSound.play().catch(() => { });
-    this.avatarVisible = true;
+    /*this.avatarVisible = true;
 
     setTimeout(() => {
       this.ambientSound.loop = true;
@@ -127,7 +127,8 @@ export class Inicio implements OnInit {
       this.ambientSound.play().catch(() => {});
     }, 800); 
 
-    setTimeout(() => this.initScrollAndKeyListeners(), 1500);
+    setTimeout(() => this.initScrollAndKeyListeners(), 1500);*/
+    this.router.navigate(['/login']);
   }
 
   typeLine(text: string, line: number, callback: () => void) {

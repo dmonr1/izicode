@@ -5,7 +5,7 @@
         <span class="autor" [class.visible]="showAuthor">— Pablo Neruda</span>
     </p>
 
-    <div class="carousel-container" *ngIf="avatarVisible">
+    <!--div class="carousel-container" *ngIf="avatarVisible">
         <div *ngFor="let avatar of visibleAvatars; let i = index" class="avatar-wrapper"
             [ngClass]="{ 'center': i === 1, 'side': i !== 1 }" (click)="i === 1 && avatarSeleccionado(i)">
             <div class="avatar-circle" [ngClass]="{
@@ -26,7 +26,7 @@
 
     <p class="mensaje-seleccion" *ngIf="avatarVisible">
         Selecciona el avatar según cómo te sientes
-    </p>
+    </p-->
 
     <div class="boton-corazon" *ngIf="!avatarVisible" [class.visible]="showButton" (click)="expandirCirculo()">
         <button nz-button nzShape="circle" nzType="default">
