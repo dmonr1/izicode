@@ -49,7 +49,7 @@ export class Login implements OnInit {
 
 
   ngOnInit(): void {
-    this.actualizarDescripcion(); 
+    this.actualizarDescripcion();
     setTimeout(() => {
       this.ambientSound.loop = true;
       this.ambientSound.volume = 0.5;
@@ -61,7 +61,7 @@ export class Login implements OnInit {
 
   actualizarDescripcion() {
     this.animarDescripcion = false;
-  
+
     setTimeout(() => {
       const avatarCentro = this.avatars[this.currentIndex];
       this.descripcionActual = this.descripcionesAvatar[avatarCentro] || '';
@@ -111,7 +111,7 @@ export class Login implements OnInit {
       this.actualizarDescripcion();
     }
   }
-  
+
   rotateCarouselUp() {
     if (this.canGoLeft()) {
       this.currentIndex--;
@@ -149,11 +149,16 @@ export class Login implements OnInit {
     }
   }
 
+  entradaSound = new Audio('assets/sounds/entrada.mp3');
+
+
   volverAlInicio() {
     this.ambientSound.pause();
     this.ambientSound.currentTime = 0;
+
+    this.entradaSound.play().catch(() => { });
+
     this.router.navigate(['/inicio']);
   }
-
 
 }

@@ -17,14 +17,16 @@ export class Core implements OnInit {
   @ViewChild('videoPlayer1') videoPlayer1!: ElementRef<HTMLVideoElement>;
   @ViewChild('videoPlayer2') videoPlayer2!: ElementRef<HTMLVideoElement>;
   @ViewChild('fraseTexto') fraseTexto!: ElementRef;
+  @ViewChild('fraseFinalTexto') fraseFinalTexto!: ElementRef;
 
+  mostrarFraseFinal = false;
   video1Muted = false;
-
   mostrarTelon = true;
-  private audio = new Audio('/assets/videoplayback.mp3');
+  private audioEscrituraFinal = new Audio('/assets/sounds/videoplayback.mp3');
   private audioFondo = new Audio('/assets/sounds/piano.mp3');
   private reproduciendo = false;
   mostrarVideo = false;
+  private audioEntrada = new Audio('/assets/sounds/entrada.mp3');
 
   constructor(private router: Router,
     private cdr: ChangeDetectorRef
@@ -40,11 +42,6 @@ export class Core implements OnInit {
   }
 
   iniciarEscritura() {
-    this.audio.loop = true;
-    this.audio.volume = 0.8;
-    this.audio.play().then(() => {
-      this.reproduciendo = true;
-    }).catch(() => { });
 
     this.escribirTexto(
       'linea1',
@@ -54,11 +51,7 @@ export class Core implements OnInit {
           'linea2',
           'que logre apagar la forma en que tú te iluminas.',
           () => {
-            if (this.reproduciendo) {
-              this.audio.pause();
-              this.audio.currentTime = 0;
-              this.reproduciendo = false;
-            }
+
 
             setTimeout(() => this.ejecutarZoomYNegro(), 6000);
           },
@@ -68,6 +61,7 @@ export class Core implements OnInit {
       80
     );
   }
+
 
   escribirTexto(id: string, texto: string, callback?: () => void, velocidad = 80) {
     const el = document.getElementById(id);
@@ -88,18 +82,18 @@ export class Core implements OnInit {
   ejecutarZoomYNegro() {
     const fondo = this.fondoZoom.nativeElement as HTMLElement;
     const contenedor = document.querySelector('.cont-general') as HTMLElement;
-  
+
     if (this.fraseTexto) {
       this.fraseTexto.nativeElement.classList.add('ocultar-frase');
     }
-  
+
     fondo.classList.add('zoom-in');
-  
+
     setTimeout(() => {
       fondo.classList.remove('zoom-in');
       fondo.classList.add('fondo-negro');
       contenedor.classList.add('fondo-negro-activo');
-  
+
       setTimeout(() => {
         this.mostrarVideos = true;
       }, 1000);
@@ -109,42 +103,51 @@ export class Core implements OnInit {
   volverAlLogin() {
     this.audioFondo.pause();
     this.audioFondo.currentTime = 0;
+
+    this.audioEscrituraFinal.pause();
+    this.audioEscrituraFinal.currentTime = 0;
+
+    this.audioEntrada.play().catch(() => { });
+
     this.router.navigate(['/login']);
   }
+
 
   mostrarVideos = false;
   mostrarSegundoVideo = false;
   mostrarSegundoVideoFinal = false;
+  mostrarBotonContinuar = false;
 
   iniciarAnimacionSegundoVideo() {
     if (!this.mostrarSegundoVideo) {
       this.mostrarSegundoVideo = true;
       this.video1Muted = true;
-  
+
       const video1 = this.videoPlayer1?.nativeElement;
-  
+
       if (video1) {
         video1.muted = true;
         if (video1.paused) {
-          video1.play().catch(() => {});
+          video1.play().catch(() => { });
         }
       }
-  
+
       setTimeout(() => {
         this.mostrarSegundoVideoFinal = true;
-  
+
         setTimeout(() => {
           const video2 = this.videoPlayer2?.nativeElement;
           if (video2) {
             video2.volume = 0.2;
             video2.muted = false;
-  
-            // 👇 Vigilar el final (últimos 0.2 segundos)
+
             const duracion = video2.duration;
             const intervalo = setInterval(() => {
               if (video2.currentTime >= duracion - 0.2) {
                 video2.muted = true;
-                clearInterval(intervalo); // solo mutear una vez
+                clearInterval(intervalo);
+
+                this.reubicarVideos();
               }
             }, 100);
           }
@@ -152,8 +155,52 @@ export class Core implements OnInit {
       }, 1000);
     }
   }
-  
 
- 
-    
+  reubicarVideos() {
+    const contenedorVideos = document.querySelector('.video-container') as HTMLElement;
+    if (contenedorVideos) {
+      contenedorVideos.classList.add('videos-final-pos');
+    }
+
+    setTimeout(() => {
+      this.mostrarFraseFinal = true;
+
+      setTimeout(() => {
+        this.escribirTexto('finalLinea1', 'Tú no eres tus miedos, ni tus errores.', () => {
+          this.escribirTexto(
+            'finalLinea2',
+            'Eres la mujer que sigue adelante a pesar de ellos, lo sé porque lo veo, y eso es admirable.\nSigue estando aquí a pesar de tanto, de haber cargado con más de lo que no merecías y aun así veo en ti el amor.',
+            () => {
+              this.audioFondo.pause();
+              this.audioFondo.currentTime = 0;
+
+              this.audioEscrituraFinal.volume = 1;
+              this.audioEscrituraFinal.play().catch(() => { });
+
+              this.escribirTexto(
+                'finalLinea3',
+                'Tienes una fuerza que a veces olvidas, pero yo no.',
+                () => {
+                  this.audioEscrituraFinal.pause();
+                  this.audioEscrituraFinal.currentTime = 0;
+
+                  setTimeout(() => {
+                    this.mostrarBotonContinuar = true;
+                  }, 1000);
+                },
+                80
+              );
+            },
+            70
+          );
+        }, 70);
+      }, 100);
+    }, 1000);
+  }
+
+  irAlFinal() {
+    // Aquí puedes navegar, cambiar de pantalla o mostrar algo más
+    console.log('Continuar al siguiente paso...');
+  }
+
 }

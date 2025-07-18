@@ -12,24 +12,33 @@
         <source src="/assets/vids/vid1.mp4" type="video/mp4" />
       </video>
     </div>
-  
+
     <div class="video-wrapper secundario" [class.visible]="mostrarSegundoVideoFinal">
-      <video
-        *ngIf="mostrarSegundoVideoFinal"
-        #videoPlayer2
-        autoplay
-        playsinline
-        loop
-      >
+      <video *ngIf="mostrarSegundoVideoFinal" #videoPlayer2 autoplay playsinline loop>
         <source src="/assets/vids/vid2.mp4" type="video/mp4" />
       </video>
     </div>
   </div>
 
+  <p class="frase-final" *ngIf="mostrarFraseFinal" #fraseFinalTexto [class.visible]="mostrarFraseFinal">
+    <span id="finalLinea1"></span><br />
+    <span id="finalLinea2"></span>
+  </p>
+  
+  <p class="frase-extra" *ngIf="mostrarFraseFinal">
+    <span id="finalLinea3"></span>
+  </p>
+
   <button nz-button nzType="default" class="btn-volver" (click)="volverAlLogin()">
     <span nz-icon nzType="caret-left" nzTheme="outline"></span>
     Volver
   </button>
+
+  <button *ngIf="mostrarBotonContinuar" class="btn-volver continuar-btn" (click)="irAlFinal()">
+    <span nz-icon nzType="caret-right" nzTheme="outline"></span>
+    Continuar
+  </button>
+  
 
   <p class="frase-escritura" #fraseTexto>
     <span id="linea1"></span><br />

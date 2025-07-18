@@ -1,243 +1,323 @@
-@import url('https://fonts.googleapis.com/css2?family=Oxanium:wght@300;400;700&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Concert+One&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+    @import url('https://fonts.googleapis.com/css2?family=Oxanium:wght@300;400;700&display=swap');
+    @import url('https://fonts.googleapis.com/css2?family=Concert+One&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
 
 
 
-.cont-general {
-    width: 100vw;
-    height: 100vh;
-    background-size: cover;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-    color: white;
-    z-index: 10;
-    position: relative;
-    overflow: hidden;
-}
+    .cont-general {
+        width: 100vw;
+        height: 100vh;
+        background-size: cover;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        color: white;
+        z-index: 10;
+        position: relative;
+        overflow: hidden;
+    }
 
-.overlay {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    background: rgba(0, 0, 0, 0.4);
-    top: 0;
-    left: 0;
-    z-index: 1;
-}
-
-.cont-general>*:not(.overlay) {
-    z-index: 2;
-}
-
-.telon-login {
-    position: fixed;
-    top: 0;
-    left: 0;
-    height: 100vh;
-    width: 100vw;
-    background: #ffffff;
-    z-index: 9999;
-    animation: subirTelon 1.4s ease forwards;
-}
-
-@keyframes subirTelon {
-    from {
+    .overlay {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.4);
         top: 0;
+        left: 0;
+        z-index: 1;
     }
 
-    to {
-        top: -100%;
-    }
-}
-
-.frase-escritura {
-    color: white;
-    font-size: 22px;
-    text-align: center;
-    margin-top: 38vh;
-    margin-left: -3%;
-    padding: 0 1rem;
-    white-space: pre-wrap;
-    font-family: 'Poppins', sans-serif !important;
-    line-height: 1.6;
-    font-weight: 500;
-}
-
-.frase-escritura span {
-    display: inline-block;
-    min-height: 2.5rem;
-}
-
-.frase-escritura {
-    transition: opacity 0.8s ease;
-    opacity: 1;
-  }
-  
-  .frase-escritura.ocultar-frase {
-    opacity: 0;
-    pointer-events: none;
-  }
-
-
-.btn-volver {
-    position: absolute;
-    top: 3%;
-    left: 2%;
-    z-index: 10;
-    padding: 6px 26px;
-    font-size: 16px;
-    font-weight: 500;
-    border-radius: 40px;
-
-    display: flex;
-    align-items: center;
-    gap: 10px;
-
-    background: rgba(255, 255, 255, 0.08);
-    border: 1px solid rgba(255, 255, 255, 0.15);
-    backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px);
-    color: white;
-
-    box-shadow:
-        inset 2px 2px 4px rgba(255, 255, 255, 0.1),
-        inset -2px -2px 4px rgba(0, 0, 0, 0.25),
-        2px 2px 6px rgba(0, 0, 0, 0.3);
-
-    transition: all 0.25s ease-in-out;
-    cursor: pointer;
-
-    nz-icon {
-        font-size: 18px;
+    .cont-general>*:not(.overlay) {
+        z-index: 2;
     }
 
-    &:hover {
-        background: rgba(255, 255, 255, 0.13);
-        box-shadow:
-            inset 1px 1px 2px rgba(255, 255, 255, 0.15),
-            inset -1px -1px 2px rgba(0, 0, 0, 0.2),
-            3px 6px 14px rgba(0, 0, 0, 0.35);
-        transform: translateY(-3px);
+    .telon-login {
+        position: fixed;
+        top: 0;
+        left: 0;
+        height: 100vh;
+        width: 100vw;
+        background: #ffffff;
+        z-index: 9999;
+        animation: subirTelon 1.4s ease forwards;
     }
 
-    &:active {
-        transform: translateY(1px);
-        box-shadow:
-            inset 2px 2px 3px rgba(0, 0, 0, 0.3),
-            inset -1px -1px 2px rgba(255, 255, 255, 0.2),
-            1px 2px 4px rgba(0, 0, 0, 0.25);
-    }
-}
+    @keyframes subirTelon {
+        from {
+            top: 0;
+        }
 
-.background-zoom {
-    position: absolute;
-    top: 0;
-    left: 0;
-    height: 100vh;
-    width: 100vw;
-    background-color: black;
-    z-index: 0;
-    overflow: hidden;
-  
-    &::after {
-      content: '';
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      width: 120vw;
-      height: 120vw;
-      background: url('/assets/backgrounds/luz.png') no-repeat center center;
-      background-size: cover;
-      border-radius: 50%;
-      transform: translate(-50%, -50%) scale(1);
-      transition: transform 3s ease, opacity 2s ease;
+        to {
+            top: -100%;
+        }
     }
-  
-    &.zoom-in::after {
-      transform: translate(-50%, -50%) scale(15);
-      left: 80%;
-    }
-  
-    &.fondo-negro::after {
-      opacity: 0;
-    }
-  
-    &.fondo-negro {
-      background: url('/assets/backgrounds/birds1.jpg');
-      background-size: cover;
-      background-position: center;
-    }
-  }
-  
 
-.video-container {
-    position: absolute;
-    top: 50vh;
-    left: 50vw;
-    transform: translate(-50%, -50%);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 1vw; 
-    z-index: 3;
-    opacity: 0;
-    transition: opacity 0.8s ease-in-out;
-    animation: fadeInContainer 1.2s ease forwards;
-    animation-delay: 1s;
-    width: 100vw;
-    padding: 0;
-    box-sizing: border-box;
-  }
-  
-  .video-wrapper {
-    width: 25vw; 
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  
-    video {
-      height: 65vh;
-      width: auto;
-      max-height: 100%;
-      border-radius: 16px;
-      box-shadow: 0 0 24px rgba(0, 0, 0, 0.8);
-      object-fit: contain;
+    .frase-escritura {
+        color: white;
+        font-size: 22px;
+        text-align: center;
+        margin-top: 38vh;
+        margin-left: -3%;
+        padding: 0 1rem;
+        white-space: pre-wrap;
+        font-family: 'Poppins', sans-serif !important;
+        line-height: 1.6;
+        font-weight: 500;
     }
-  }
-  
-  .video-wrapper.principal {
-    justify-content: flex-end;
-  }
-  
-  .video-wrapper.secundario {
-    transition: opacity 1s ease, transform 0.6s ease;
-    opacity: 0;
-    transform: scale(0.95);
-    pointer-events: none;
-    visibility: hidden;
-  
-    &.visible {
-      opacity: 1;
-      transform: scale(1);
-      pointer-events: auto;
-      visibility: visible;
+
+    .frase-escritura span {
+        display: inline-block;
+        min-height: 2.5rem;
     }
-  }
-  
 
-
-@keyframes fadeInContainer {
-    to {
+    .frase-escritura {
+        transition: opacity 0.8s ease;
         opacity: 1;
     }
-}
+
+    .frase-escritura.ocultar-frase {
+        opacity: 0;
+        pointer-events: none;
+    }
+
+
+    .btn-volver {
+        position: absolute;
+        top: 3%;
+        left: 2%;
+        z-index: 10;
+        padding: 6px 26px;
+        font-size: 16px;
+        font-weight: 500;
+        border-radius: 40px;
+
+        display: flex;
+        align-items: center;
+        gap: 10px;
+
+        background: rgba(255, 255, 255, 0.08);
+        border: 1px solid rgba(255, 255, 255, 0.15);
+        backdrop-filter: blur(12px);
+        -webkit-backdrop-filter: blur(12px);
+        color: white;
+
+        box-shadow:
+            inset 2px 2px 4px rgba(255, 255, 255, 0.1),
+            inset -2px -2px 4px rgba(0, 0, 0, 0.25),
+            2px 2px 6px rgba(0, 0, 0, 0.3);
+
+        transition: all 0.25s ease-in-out;
+        cursor: pointer;
+
+        nz-icon {
+            font-size: 18px;
+        }
+
+        &:hover {
+            background: rgba(255, 255, 255, 0.13);
+            box-shadow:
+                inset 1px 1px 2px rgba(255, 255, 255, 0.15),
+                inset -1px -1px 2px rgba(0, 0, 0, 0.2),
+                3px 6px 14px rgba(0, 0, 0, 0.35);
+            transform: translateY(-3px);
+        }
+
+        &:active {
+            transform: translateY(1px);
+            box-shadow:
+                inset 2px 2px 3px rgba(0, 0, 0, 0.3),
+                inset -1px -1px 2px rgba(255, 255, 255, 0.2),
+                1px 2px 4px rgba(0, 0, 0, 0.25);
+        }
+
+        .continuar-btn {
+            position: absolute;
+            bottom: 3%;
+            right: 2%;
+            left: auto;
+            top: auto;
+          
+            animation: aparecerDerecha 1s ease-out forwards;
+            opacity: 0;
+          }
+          
+          @keyframes aparecerDerecha {
+            0% {
+              opacity: 0;
+              transform: translateX(100px);
+            }
+            100% {
+              opacity: 1;
+              transform: translateX(0);
+            }
+          }
+          
+          
+    }
+
+    .background-zoom {
+        position: absolute;
+        top: 0;
+        left: 0;
+        height: 100vh;
+        width: 100vw;
+        background-color: black;
+        z-index: 0;
+        overflow: hidden;
+
+        &::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 120vw;
+            height: 120vw;
+            background: url('/assets/backgrounds/luz.png') no-repeat center center;
+            background-size: cover;
+            border-radius: 50%;
+            transform: translate(-50%, -50%) scale(1);
+            transition: transform 3s ease, opacity 2s ease;
+        }
+
+        &.zoom-in::after {
+            transform: translate(-50%, -50%) scale(15);
+        }
+
+        &.fondo-negro::after {
+            opacity: 0;
+        }
+
+        &.fondo-negro {
+            background: url('/assets/backgrounds/birds1.jpg');
+            background-size: cover;
+            background-position: center;
+        }
+    }
+
+
+    .video-container {
+        position: absolute;
+        top: 50vh;
+        left: 50vw;
+        transform: translate(-50%, -50%);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 1vw;
+        z-index: 3;
+        opacity: 0;
+        transition: opacity 0.8s ease-in-out;
+        animation: fadeInContainer 1.2s ease forwards;
+        animation-delay: 1s;
+        width: 100vw;
+        padding: 0;
+        box-sizing: border-box;
+    }
+
+    .video-wrapper {
+        width: 25vw;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        video {
+            height: 65vh;
+            width: auto;
+            max-height: 100%;
+            border-radius: 16px;
+            box-shadow: 0 0 24px rgba(0, 0, 0, 0.8);
+            object-fit: contain;
+        }
+    }
+
+    .video-wrapper.principal {
+        justify-content: flex-end;
+    }
+
+    .video-wrapper.secundario {
+        transition: opacity 1s ease, transform 0.6s ease;
+        opacity: 0;
+        transform: scale(0.95);
+        pointer-events: none;
+        visibility: hidden;
+
+        &.visible {
+            opacity: 1;
+            transform: scale(1);
+            pointer-events: auto;
+            visibility: visible;
+        }
+    }
 
 
 
-.cont-general.fondo-negro-activo .frase-escritura,
-.cont-general.fondo-negro-activo .overlay,
-.cont-general.fondo-negro-activo .background-zoom:not(.fondo-negro) {
-    display: none !important;
-}
+    @keyframes fadeInContainer {
+        to {
+            opacity: 1;
+        }
+    }
+
+
+
+    .cont-general.fondo-negro-activo .frase-escritura,
+    .cont-general.fondo-negro-activo .overlay,
+    .cont-general.fondo-negro-activo .background-zoom:not(.fondo-negro) {
+        display: none !important;
+    }
+
+    .video-container.videos-final-pos {
+        top: 40vh;
+        gap: 2vw;
+        transition: top 1s ease;
+
+        .video-wrapper {
+            transition: transform 1s ease, width 1s ease;
+            transform: scale(1.15);
+            width: 26vw;
+
+            video {
+                height: 48vh;
+                transition: height 1s ease, box-shadow 1s ease;
+                box-shadow: 0 0 16px rgba(0, 0, 0, 0.6);
+            }
+        }
+    }
+
+
+    .frase-final {
+        position: absolute;
+        top: 71vh;
+        left: 50%;
+        transform: translateX(-50%);
+        text-align: center;
+        font-size: 20px;
+        font-family: 'Poppins', sans-serif;
+        color: white;
+        opacity: 0;
+        transition: opacity 1s ease-in-out;
+        line-height: 1.8;
+        max-width: 90vw;
+
+        &.visible {
+            opacity: 1;
+        }
+
+        span {
+            display: inline-block;
+            min-height: 2.5rem;
+        }
+    }
+
+    .frase-extra {
+        position: absolute;
+        top: calc(72vh + 5.5rem);
+        left: 50%;
+        transform: translateX(-50%);
+        font-family: 'Oxanium', sans-serif;
+        font-weight: 700;
+        color: #fff;
+        font-size: 1.5rem;
+        text-align: center;
+        line-height: 7.6;
+        max-width: 90vw;
+    }
