@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { NzIconModule } from 'ng-zorro-antd/icon';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-core',
@@ -14,6 +15,9 @@ export class Core implements OnInit {
   private audio = new Audio('/assets/videoplayback.mp3');
   private audioFondo = new Audio('/assets/sounds/piano.mp3'); 
   private reproduciendo = false;
+
+    constructor(private router: Router) {}
+
 
   ngOnInit() {
     this.audioFondo.loop = true;
@@ -66,4 +70,11 @@ export class Core implements OnInit {
       }
     }, velocidad);
   }
+
+   volverAlLogin() {
+    this.audioFondo.pause();
+    this.audioFondo.currentTime = 0;
+    this.router.navigate(['/login']); // Cambia la ruta si usas otra
+  }
+
 }

@@ -3,65 +3,49 @@ import { CommonModule } from '@angular/common';
 import { NzIconModule } from 'ng-zorro-antd/icon';
 import { Router } from '@angular/router';
 
-
 @Component({
   selector: 'app-login',
+  standalone: true,
   imports: [CommonModule, NzIconModule],
   templateUrl: './login.html',
-  styleUrl: './login.scss',
-  standalone: true
+  styleUrl: './login.scss'
 })
 export class Login implements OnInit {
 
   constructor(private router: Router) { }
 
-  line1 = 'Porque tú siempre existes dondequiera,';
-  line2 = 'pero existes mejor donde te quiero.';
-
-  typedLine1 = '';
-  typedLine2 = '';
-
-  showCursor1 = true;
-  showCursor2 = false;
-  showAuthor = false;
-  showButton = false;
-  expande = false;
-  avatarVisible = false;
-
   avatars: string[] = [
     'assets/imgs/nico-feliz.png',
-    'assets/imgs/avatar_centrado_recortado.png',
+    'assets/imgs/nico-ser.png',
     'assets/imgs/nico-core.png',
   ];
 
   currentIndex = 1;
 
-  typingSound = new Audio('assets/sounds/videoplayback.mp3');
-  startupSound = new Audio('assets/sounds/entrada.mp3');
   ambientSound = new Audio('assets/sounds/corazon.mp3');
   telonSound = new Audio('assets/sounds/pase-preguntas.mp3');
 
-  isTyping = false;
+  iniciarTransicion = false;
+
+  descripcionHover = '';
+  hoverActivo = false;
 
   get visibleAvatars(): string[] {
     const len = this.avatars.length;
     const left = (this.currentIndex - 1 + len) % len;
     const center = this.currentIndex;
     const right = (this.currentIndex + 1) % len;
-
     return [this.avatars[left], this.avatars[center], this.avatars[right]];
   }
 
   ngOnInit(): void {
-
     setTimeout(() => {
       this.ambientSound.loop = true;
       this.ambientSound.volume = 0.5;
-      this.ambientSound.play().catch(() => {});
-    }, 500); 
-  
-    setTimeout(() => this.initScrollAndKeyListeners(), 1500);
+      this.ambientSound.play().catch(() => { });
+    }, 500);
 
+    setTimeout(() => this.initScrollAndKeyListeners(), 1500);
   }
 
   initScrollAndKeyListeners(): void {
@@ -112,76 +96,41 @@ export class Login implements OnInit {
     }
   }
 
-
-  expandirCirculo() {
-    this.startupSound.play().catch(() => { });
-    this.avatarVisible = true;
-
-    setTimeout(() => {
-      this.ambientSound.loop = true;
-      this.ambientSound.volume = 0.5;
-      this.ambientSound.play().catch(() => {});
-    }, 800); 
-
-    setTimeout(() => this.initScrollAndKeyListeners(), 1500);
-  }
-
-  typeLine(text: string, line: number, callback: () => void) {
-    let i = 0;
-
-    this.typingSound.loop = true;
-    this.typingSound.volume = 0.8;
-    this.typingSound.play().catch(() => { });
-
-    const interval = setInterval(() => {
-      if (i < text.length) {
-        if (line === 1) this.typedLine1 += text[i];
-        else this.typedLine2 += text[i];
-        i++;
-      } else {
-        clearInterval(interval);
-        this.typingSound.pause();
-        this.typingSound.currentTime = 0;
-        callback();
-      }
-    }, 100);
-  }
-
-
-  iniciarTransicion = false;  
-
   avatarSeleccionado(i: number) {
-    if (i !== 1) return; 
-  
+    if (i !== 1) return;
+
     const ruta = this.obtenerRutaPorAvatar(this.avatars[this.currentIndex]);
     if (!ruta) return;
-  
+
     this.ambientSound.pause();
     this.ambientSound.currentTime = 0;
-  
+
     this.iniciarTransicion = true;
-    this.telonSound.play().catch(() => {});
-  
+    this.telonSound.play().catch(() => { });
+
     setTimeout(() => {
       this.router.navigate([ruta]);
     }, 1400);
   }
-  
+
   obtenerRutaPorAvatar(avatar: string): string | null {
     switch (avatar) {
       case 'assets/imgs/nico-feliz.png':
         return '/feliz';
-      case 'assets/imgs/avatar_centrado_recortado.png':
-        return '/triste';
-      case 'assets/imgs/nico-core.png':
+      case 'assets/imgs/nico-ser.png':
         return '/core';
+      case 'assets/imgs/nico-core.png':
+        return '/triste';
       default:
         return null;
     }
   }
-  
+
+  volverAlInicio() {
+    this.ambientSound.pause();
+    this.ambientSound.currentTime = 0;
+    this.router.navigate(['/inicio']);
+  }
+
   
 }
-
-
-

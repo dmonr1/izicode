@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { NzIconModule } from 'ng-zorro-antd/icon';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -15,16 +16,19 @@ export class Feliz implements OnInit {
 
   mostrarTelon = true;
   private audio = new Audio('/assets/videoplayback.mp3');
-  private audioFondo = new Audio('/assets/sounds/guitarra.mp3'); 
+  private audioFondo = new Audio('/assets/sounds/guitarra.mp3');
   private reproduciendo = false;
+
+  constructor(private router: Router) { }
+
 
   ngOnInit() {
     this.audioFondo.loop = true;
-    this.audioFondo.volume = 0.5;
-    this.audioFondo.play().catch(() => {});
+    this.audioFondo.volume = 0.3;
+    this.audioFondo.play().catch(() => { });
     setTimeout(() => {
       this.iniciarEscritura();
-    }, 500); 
+    }, 500);
   }
 
   iniciarEscritura() {
@@ -32,15 +36,15 @@ export class Feliz implements OnInit {
     this.audio.volume = 0.8;
     this.audio.play().then(() => {
       this.reproduciendo = true;
-    }).catch(() => {});
+    }).catch(() => { });
 
     this.escribirTexto(
       'linea1',
-      'No hay cueva tan honda, ni sombra tan densa,',
+      'Cuando tú sonríes, todo en mí se alumbra, no importa el momento, siempre voy a estar para ti.',
       () => {
         this.escribirTexto(
           'linea2',
-          'que logre apagar la forma en que tú te iluminas.',
+          'No necesito respuestas, solo estar ahí contigo.',
           () => {
             if (this.reproduciendo) {
               this.audio.pause();
@@ -68,6 +72,12 @@ export class Feliz implements OnInit {
         if (callback) callback();
       }
     }, velocidad);
+  }
+
+  volverAlLogin() {
+    this.audioFondo.pause();
+    this.audioFondo.currentTime = 0;
+    this.router.navigate(['/login']); // Cambia la ruta si usas otra
   }
 
 }

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { NzIconModule } from 'ng-zorro-antd/icon';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-triste',
@@ -12,16 +13,18 @@ import { NzIconModule } from 'ng-zorro-antd/icon';
 export class Triste implements OnInit {
   mostrarTelon = true;
   private audio = new Audio('/assets/videoplayback.mp3');
-  private audioFondo = new Audio('/assets/sounds/fondo1.mp3'); 
+  private audioFondo = new Audio('/assets/sounds/fondo2.mp3');
   private reproduciendo = false;
+
+  constructor(private router: Router) {}
 
   ngOnInit() {
     this.audioFondo.loop = true;
     this.audioFondo.volume = 0.1;
-    this.audioFondo.play().catch(() => {});
+    this.audioFondo.play().catch(() => { });
     setTimeout(() => {
       this.iniciarEscritura();
-    }, 500); 
+    }, 500);
   }
 
   iniciarEscritura() {
@@ -29,7 +32,7 @@ export class Triste implements OnInit {
     this.audio.volume = 0.8;
     this.audio.play().then(() => {
       this.reproduciendo = true;
-    }).catch(() => {});
+    }).catch(() => { });
 
     this.escribirTexto(
       'linea1',
@@ -66,4 +69,11 @@ export class Triste implements OnInit {
       }
     }, velocidad);
   }
+
+  volverAlLogin() {
+    this.audioFondo.pause();
+    this.audioFondo.currentTime = 0;
+    this.router.navigate(['/login']); // Cambia la ruta si usas otra
+  }
+
 }
