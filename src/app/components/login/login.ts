@@ -20,6 +20,12 @@ export class Login implements OnInit {
     'assets/imgs/nico-core.png',
   ];
 
+  descripcionesAvatar: { [key: string]: string } = {
+    'assets/imgs/nico-feliz.png': 'Feliz',
+    'assets/imgs/nico-ser.png': 'Ser',
+    'assets/imgs/nico-core.png': 'Core'
+  };
+
   currentIndex = 1;
 
   ambientSound = new Audio('assets/sounds/corazon.mp3');
@@ -30,6 +36,9 @@ export class Login implements OnInit {
   descripcionHover = '';
   hoverActivo = false;
 
+  descripcionActual = '';
+  animarDescripcion = false;
+
   get visibleAvatars(): string[] {
     const len = this.avatars.length;
     const left = (this.currentIndex - 1 + len) % len;
@@ -38,7 +47,9 @@ export class Login implements OnInit {
     return [this.avatars[left], this.avatars[center], this.avatars[right]];
   }
 
+
   ngOnInit(): void {
+    this.actualizarDescripcion(); 
     setTimeout(() => {
       this.ambientSound.loop = true;
       this.ambientSound.volume = 0.5;
@@ -46,6 +57,16 @@ export class Login implements OnInit {
     }, 500);
 
     setTimeout(() => this.initScrollAndKeyListeners(), 1500);
+  }
+
+  actualizarDescripcion() {
+    this.animarDescripcion = false;
+  
+    setTimeout(() => {
+      const avatarCentro = this.avatars[this.currentIndex];
+      this.descripcionActual = this.descripcionesAvatar[avatarCentro] || '';
+      this.animarDescripcion = true;
+    }, 10);
   }
 
   initScrollAndKeyListeners(): void {
@@ -87,12 +108,14 @@ export class Login implements OnInit {
   rotateCarouselDown() {
     if (this.canGoRight()) {
       this.currentIndex++;
+      this.actualizarDescripcion();
     }
   }
-
+  
   rotateCarouselUp() {
     if (this.canGoLeft()) {
       this.currentIndex--;
+      this.actualizarDescripcion();
     }
   }
 
@@ -120,7 +143,7 @@ export class Login implements OnInit {
       case 'assets/imgs/nico-ser.png':
         return '/core';
       case 'assets/imgs/nico-core.png':
-        return '/triste';
+        return '/ser';
       default:
         return null;
     }
@@ -132,5 +155,5 @@ export class Login implements OnInit {
     this.router.navigate(['/inicio']);
   }
 
-  
+
 }

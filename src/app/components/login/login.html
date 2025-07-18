@@ -1,35 +1,37 @@
 <div class="cont-general">
-  
-  <button class="btn-regresar animar-entrada" (click)="volverAlInicio()">
-  <nz-icon nzType="menu-fold" nzTheme="outline"></nz-icon>
-  Regresar al inicio
-</button>
 
-  <div class="carousel-container">
-    <div *ngFor="let avatar of visibleAvatars; let i = index" class="avatar-wrapper"
-      [ngClass]="{ 'center': i === 1, 'side': i !== 1 }" (click)="i === 1 && avatarSeleccionado(i)">
+    <button class="btn-regresar animar-entrada" (click)="volverAlInicio()">
+        <nz-icon nzType="menu-fold" nzTheme="outline"></nz-icon>
+        Regresar al inicio
+    </button>
 
-      <div class="avatar-circle" [ngClass]="{
+    <div class="carousel-container">
+        <div *ngFor="let avatar of visibleAvatars; let i = index" class="avatar-wrapper"
+            [ngClass]="{ 'center': i === 1, 'side': i !== 1 }" (click)="i === 1 && avatarSeleccionado(i)">
+
+            <div class="avatar-circle" [ngClass]="{
              'circle-center': i === 1,
              'circle-side': i !== 1,
              'circle-expand-center': i === 1,
              'circle-expand-side': i !== 1
            }">
-      </div>
+            </div>
 
-      <img [src]="avatar" [ngClass]="{
+            <img [src]="avatar" [ngClass]="{
              'avatar-img-center': i === 1,
              'avatar-img-side': i !== 1,
              'avatar-fade-center': i === 1,
              'avatar-fade-side': i !== 1
            }" />
+        </div>
     </div>
-  </div>
-  
+    <p class="descripcion-avatar" [class.animar]="!animarDescripcion">
+        {{ descripcionActual }}
+      </p>
 
-  <p class="mensaje-seleccion">
-    Selecciona el avatar según cómo te sientes
-  </p>
+    <p class="mensaje-seleccion">
+        Selecciona el avatar según cómo te sientes
+    </p>
 </div>
 
 <div class="telon" [class.bajar]="iniciarTransicion"></div>

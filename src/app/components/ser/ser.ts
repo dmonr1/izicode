@@ -4,13 +4,14 @@ import { NzIconModule } from 'ng-zorro-antd/icon';
 import { Router } from '@angular/router';
 
 @Component({
-  selector: 'app-triste',
+  selector: 'app-ser',
   imports: [CommonModule, NzIconModule],
-  templateUrl: './triste.html',
-  styleUrl: './triste.scss',
+  templateUrl: './ser.html',
+  styleUrl: './ser.scss',
   standalone: true
 })
-export class Triste implements OnInit {
+export class Ser implements OnInit {
+
   mostrarTelon = true;
   private audio = new Audio('/assets/videoplayback.mp3');
   private audioFondo = new Audio('/assets/sounds/fondo2.mp3');
@@ -20,7 +21,7 @@ export class Triste implements OnInit {
 
   ngOnInit() {
     this.audioFondo.loop = true;
-    this.audioFondo.volume = 0.1;
+    this.audioFondo.volume = 0.6;
     this.audioFondo.play().catch(() => { });
     setTimeout(() => {
       this.iniciarEscritura();
@@ -36,11 +37,11 @@ export class Triste implements OnInit {
 
     this.escribirTexto(
       'linea1',
-      'No hay cueva tan honda, ni sombra tan densa,',
+      'Si alguien me preguntara qué es la hermosura, solo tendría que mirarte para responder.',
       () => {
         this.escribirTexto(
           'linea2',
-          'que logre apagar la forma en que tú te iluminas.',
+          'Y solo con una mirada tuya todo tiene sentido.',
           () => {
             if (this.reproduciendo) {
               this.audio.pause();
@@ -75,5 +76,6 @@ export class Triste implements OnInit {
     this.audioFondo.currentTime = 0;
     this.router.navigate(['/login']); // Cambia la ruta si usas otra
   }
+
 
 }
