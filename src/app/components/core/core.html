@@ -1,14 +1,38 @@
 <div class="telon-login" *ngIf="mostrarTelon"></div>
 
 <div class="cont-general">
+
+  <div class="background-zoom" #fondoZoom></div>
+
+  <div class="overlay"></div>
+
+  <div class="video-container" *ngIf="mostrarVideos" [class.expandir]="mostrarSegundoVideo">
+    <div class="video-wrapper principal">
+      <video #videoPlayer1 autoplay playsinline (ended)="iniciarAnimacionSegundoVideo()" [muted]="video1Muted">
+        <source src="/assets/vids/vid1.mp4" type="video/mp4" />
+      </video>
+    </div>
+  
+    <div class="video-wrapper secundario" [class.visible]="mostrarSegundoVideoFinal">
+      <video
+        *ngIf="mostrarSegundoVideoFinal"
+        #videoPlayer2
+        autoplay
+        playsinline
+        loop
+      >
+        <source src="/assets/vids/vid2.mp4" type="video/mp4" />
+      </video>
+    </div>
+  </div>
+
   <button nz-button nzType="default" class="btn-volver" (click)="volverAlLogin()">
     <span nz-icon nzType="caret-left" nzTheme="outline"></span>
     Volver
   </button>
-  <div class="overlay"></div>
 
-  <p class="frase-escritura">
-    <span id="linea1"></span><br>
+  <p class="frase-escritura" #fraseTexto>
+    <span id="linea1"></span><br />
     <span id="linea2"></span>
   </p>
 </div>

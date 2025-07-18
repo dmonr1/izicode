@@ -1,10 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Oxanium:wght@300;400;700&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Concert+One&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
 
-:host ::ng-deep .cont-general {
-    background: url('/assets/backgrounds/luz.png') no-repeat center center;
-    background-size: cover;
-}
 
 
 .cont-general {
@@ -67,14 +63,24 @@
     font-family: 'Poppins', sans-serif !important;
     line-height: 1.6;
     font-weight: 500;
-  }
-  
-  .frase-escritura span {
+}
+
+.frase-escritura span {
     display: inline-block;
-    min-height: 2.5rem; 
+    min-height: 2.5rem;
+}
+
+.frase-escritura {
+    transition: opacity 0.8s ease;
+    opacity: 1;
   }
   
-   
+  .frase-escritura.ocultar-frase {
+    opacity: 0;
+    pointer-events: none;
+  }
+
+
 .btn-volver {
     position: absolute;
     top: 3%;
@@ -112,15 +118,126 @@
         box-shadow:
             inset 1px 1px 2px rgba(255, 255, 255, 0.15),
             inset -1px -1px 2px rgba(0, 0, 0, 0.2),
-            3px 6px 14px rgba(0, 0, 0, 0.35); 
-        transform: translateY(-3px); 
+            3px 6px 14px rgba(0, 0, 0, 0.35);
+        transform: translateY(-3px);
     }
 
     &:active {
-        transform: translateY(1px); 
+        transform: translateY(1px);
         box-shadow:
             inset 2px 2px 3px rgba(0, 0, 0, 0.3),
             inset -1px -1px 2px rgba(255, 255, 255, 0.2),
             1px 2px 4px rgba(0, 0, 0, 0.25);
     }
+}
+
+.background-zoom {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    width: 100vw;
+    background-color: black;
+    z-index: 0;
+    overflow: hidden;
+  
+    &::after {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 120vw;
+      height: 120vw;
+      background: url('/assets/backgrounds/luz.png') no-repeat center center;
+      background-size: cover;
+      border-radius: 50%;
+      transform: translate(-50%, -50%) scale(1);
+      transition: transform 3s ease, opacity 2s ease;
+    }
+  
+    &.zoom-in::after {
+      transform: translate(-50%, -50%) scale(15);
+      left: 80%;
+    }
+  
+    &.fondo-negro::after {
+      opacity: 0;
+    }
+  
+    &.fondo-negro {
+      background: url('/assets/backgrounds/birds1.jpg');
+      background-size: cover;
+      background-position: center;
+    }
+  }
+  
+
+.video-container {
+    position: absolute;
+    top: 50vh;
+    left: 50vw;
+    transform: translate(-50%, -50%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1vw; 
+    z-index: 3;
+    opacity: 0;
+    transition: opacity 0.8s ease-in-out;
+    animation: fadeInContainer 1.2s ease forwards;
+    animation-delay: 1s;
+    width: 100vw;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  .video-wrapper {
+    width: 25vw; 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  
+    video {
+      height: 65vh;
+      width: auto;
+      max-height: 100%;
+      border-radius: 16px;
+      box-shadow: 0 0 24px rgba(0, 0, 0, 0.8);
+      object-fit: contain;
+    }
+  }
+  
+  .video-wrapper.principal {
+    justify-content: flex-end;
+  }
+  
+  .video-wrapper.secundario {
+    transition: opacity 1s ease, transform 0.6s ease;
+    opacity: 0;
+    transform: scale(0.95);
+    pointer-events: none;
+    visibility: hidden;
+  
+    &.visible {
+      opacity: 1;
+      transform: scale(1);
+      pointer-events: auto;
+      visibility: visible;
+    }
+  }
+  
+
+
+@keyframes fadeInContainer {
+    to {
+        opacity: 1;
+    }
+}
+
+
+
+.cont-general.fondo-negro-activo .frase-escritura,
+.cont-general.fondo-negro-activo .overlay,
+.cont-general.fondo-negro-activo .background-zoom:not(.fondo-negro) {
+    display: none !important;
 }
