@@ -171,25 +171,60 @@ export class Core implements OnInit {
             'finalLinea2',
             'Eres la mujer que sigue adelante a pesar de ellos, lo sé porque lo veo, y eso es admirable.\nSigue estando aquí a pesar de tanto, de haber cargado con más de lo que no merecías y aun así veo en ti el amor.',
             () => {
-              this.audioFondo.pause();
-              this.audioFondo.currentTime = 0;
 
-              this.audioEscrituraFinal.volume = 1;
-              this.audioEscrituraFinal.play().catch(() => { });
+              const fadeDuration = 3000;
+              const fadeSteps = 30;
+              const intervalTime = fadeDuration / fadeSteps;
+              let currentStep = 0;
 
-              this.escribirTexto(
-                'finalLinea3',
-                'Tienes una fuerza que a veces olvidas, pero yo no.',
-                () => {
-                  this.audioEscrituraFinal.pause();
-                  this.audioEscrituraFinal.currentTime = 0;
+              const fadeOut = setInterval(() => {
+                currentStep++;
+                const newVolume = Math.max(0, 1 - (currentStep / fadeSteps));
+                this.audioFondo.volume = newVolume;
+
+                if (currentStep >= fadeSteps) {
+                  clearInterval(fadeOut);
+                  this.audioFondo.pause();
+                  this.audioFondo.currentTime = 0;
 
                   setTimeout(() => {
-                    this.mostrarBotonContinuar = true;
+                    this.audioEscrituraFinal.volume = 1;
+                    this.audioEscrituraFinal.play().catch(() => { });
+
+                    this.escribirTexto(
+                      'finalLinea3',
+                      'Tienes una fuerza que a veces olvidas, pero yo no.',
+                      () => {
+                        this.audioEscrituraFinal.pause();
+                        this.audioEscrituraFinal.currentTime = 0;
+
+                        setTimeout(() => {
+                          this.audioFondo.volume = 0;
+                          this.audioFondo.play().catch(() => { });
+
+                          const fadeInDuration = 3000;
+                          const fadeInSteps = 30;
+                          const intervalFade = fadeInDuration / fadeInSteps;
+                          let stepFade = 0;
+
+                          const fadeIn = setInterval(() => {
+                            stepFade++;
+                            const newVolume = Math.min(1, stepFade / fadeInSteps);
+                            this.audioFondo.volume = newVolume;
+
+                            if (stepFade >= fadeInSteps) {
+                              clearInterval(fadeIn);
+                            }
+                          }, intervalFade);
+
+                          this.mostrarBotonContinuar = true;
+                        }, 3000);
+                      },
+                      80
+                    );
                   }, 1000);
-                },
-                80
-              );
+                }
+              }, intervalTime);
             },
             70
           );
@@ -199,7 +234,6 @@ export class Core implements OnInit {
   }
 
   irAlFinal() {
-    // Aquí puedes navegar, cambiar de pantalla o mostrar algo más
     console.log('Continuar al siguiente paso...');
   }
 

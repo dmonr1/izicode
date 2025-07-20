@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { NzIconModule } from 'ng-zorro-antd/icon';
 import { Router } from '@angular/router';
@@ -18,6 +18,34 @@ export class Feliz implements OnInit {
   private audio = new Audio('/assets/videoplayback.mp3');
   private audioFondo = new Audio('/assets/sounds/guitarra.mp3');
   private reproduciendo = false;
+
+  @ViewChild('pantallaVideo') pantallaVideoRef!: ElementRef<HTMLVideoElement>;
+
+videoIndex = 0;
+videos = [
+  { src: '/assets/vids/vid3.mp4', muted: true },
+  { src: '/assets/vids/vid4.mp4', muted: false },
+  { src: '/assets/vids/vid5.mp4', muted: true }
+];
+videoActual = this.videos[this.videoIndex];
+
+mostrarPantallaVideo = false;
+
+ajustarVolumen() {
+  const video: HTMLVideoElement | null = document.querySelector('video');
+  if (video && !this.videoActual.muted) {
+    video.volume = 0.2;
+  }
+}
+
+reproducirSiguienteVideo() {
+  this.videoIndex++;
+  if (this.videoIndex < this.videos.length) {
+    this.videoActual = this.videos[this.videoIndex];
+  } else {
+    this.mostrarPantallaVideo = false;
+  }
+}
 
   constructor(private router: Router) { }
 
@@ -51,6 +79,9 @@ export class Feliz implements OnInit {
               this.audio.currentTime = 0;
               this.reproduciendo = false;
             }
+            setTimeout(() => {
+              this.mostrarPantallaVideo = true;
+            }, 600);
           },
           80
         );
@@ -77,7 +108,9 @@ export class Feliz implements OnInit {
   volverAlLogin() {
     this.audioFondo.pause();
     this.audioFondo.currentTime = 0;
-    this.router.navigate(['/login']); // Cambia la ruta si usas otra
+    this.router.navigate(['/login']);
   }
+
+
 
 }

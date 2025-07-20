@@ -24,7 +24,7 @@
     <span id="finalLinea1"></span><br />
     <span id="finalLinea2"></span>
   </p>
-  
+
   <p class="frase-extra" *ngIf="mostrarFraseFinal">
     <span id="finalLinea3"></span>
   </p>
@@ -34,11 +34,11 @@
     Volver
   </button>
 
-  <button *ngIf="mostrarBotonContinuar" class="btn-volver continuar-btn" (click)="irAlFinal()">
-    <span nz-icon nzType="caret-right" nzTheme="outline"></span>
+  <button *ngIf="mostrarBotonContinuar" class="continuar-btn" (click)="irAlFinal()">
     Continuar
+    <span nz-icon nzType="caret-right" nzTheme="outline"></span>
   </button>
-  
+
 
   <p class="frase-escritura" #fraseTexto>
     <span id="linea1"></span><br />

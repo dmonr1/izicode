@@ -1,381 +1,381 @@
-@import url('https://fonts.googleapis.com/css2?family=Oxanium:wght@300;400;700&display=swap');
+    @import url('https://fonts.googleapis.com/css2?family=Oxanium:wght@300;400;700&display=swap');
 
-.cont-general {
-    font-family: 'Oxanium', sans-serif;
-    width: 100vw;
-    height: 100vh;
-    background: #272727;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-}
+    .cont-general {
+        font-family: 'Oxanium', sans-serif;
+        width: 100vw;
+        height: 100vh;
+        background: #272727;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+    }
 
-.avatar-img {
-    position: absolute;
-    top: 49%;
-    left: 49.7%;
-    width: 18vw;
-    height: 18.3vw;
-    border-radius: 50%;
-    object-fit: cover;
-    transform: translate(-50%, -50%) scale(0.4);
-    opacity: 0;
-    transition: opacity 1s ease 0.4s, transform 1s ease 0.2s;
-    z-index: 20;
-    pointer-events: none;
-}
-
-.avatar-img.visible {
-    opacity: 1;
-    transform: translate(-50%, -50%) scale(1);
-}
-
-
-.carousel-container {
-    position: absolute;
-    top: 45%;
-    left: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    transform: translate(-50%, -50%);
-    z-index: 20;
-    gap: 1.3rem;
-}
-
-.avatar-img-center {
-    width: 16.5vw;
-    height: 15.5vw;
-    border-radius: 50%;
-    object-fit: cover;
-    z-index: 2;
-    transform: scale(1);
-    animation: growAndGlow 0.6s ease forwards;
-}
-
-.avatar-img-side {
-    width: 10.2vw;
-    height: 10.2vw;
-    border-radius: 50%;
-    object-fit: cover;
-    opacity: 0.85;
-    z-index: 1;
-    animation: growAndGlow 0.6s ease forwards;
-
-}
-
-@keyframes circleGrowAndGlowCenter {
-    0% {
-        transform: scale(0);
+    .avatar-img {
+        position: absolute;
+        top: 49%;
+        left: 49.7%;
+        width: 18vw;
+        height: 18.3vw;
+        border-radius: 50%;
+        object-fit: cover;
+        transform: translate(-50%, -50%) scale(0.4);
         opacity: 0;
-        box-shadow: none;
+        transition: opacity 1s ease 0.4s, transform 1s ease 0.2s;
+        z-index: 20;
+        pointer-events: none;
     }
 
-    100% {
-        transform: scale(1);
+    .avatar-img.visible {
         opacity: 1;
-        box-shadow:
-            0 0 25px rgba(166, 78, 255, 0.25),
-            0 0 35px rgba(166, 78, 255, 0.15);
-    }
-}
-
-@keyframes circleGrowAndGlowSide {
-    0% {
-        transform: scale(0);
-        opacity: 0;
-        box-shadow: none;
+        transform: translate(-50%, -50%) scale(1);
     }
 
-    100% {
+
+    .carousel-container {
+        position: absolute;
+        top: 45%;
+        left: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transform: translate(-50%, -50%);
+        z-index: 20;
+        gap: 1.3rem;
+    }
+
+    .avatar-img-center {
+        width: 16.5vw;
+        height: 15.5vw;
+        border-radius: 50%;
+        object-fit: cover;
+        z-index: 2;
         transform: scale(1);
-        opacity: 1;
-        box-shadow:
-            0 0 12px rgba(255, 255, 255, 0.10),
-            0 0 18px rgba(255, 255, 255, 0.07);
-    }
-}
-
-
-
-.avatar-grow-center {
-    animation: growAndGlowCenter 0.8s ease-out forwards;
-    animation-delay: 0.1s;
-}
-
-.avatar-grow-side {
-    animation: growAndGlowSide 0.8s ease-out forwards;
-    animation-delay: 0.2s;
-}
-
-@keyframes fadeScaleIn {
-    to {
-        opacity: 1;
-        transform: scale(1);
-    }
-}
-
-.avatar-fade-center {
-    opacity: 0;
-    transform: scale(0.6);
-    animation: fadeScaleIn 0.9s ease forwards;
-}
-
-.avatar-fade-side {
-    opacity: 0;
-    transform: scale(0.6);
-    animation: fadeScaleIn 0.9s ease forwards;
-    animation-delay: 0.2s;
-}
-
-.avatar-wrapper {
-    position: relative;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-
-.avatar-circle {
-    position: absolute;
-    background-color: rgba(0, 0, 0, 0);
-    border-radius: 50%;
-    opacity: 0;
-    transform: scale(0);
-    z-index: 1;
-    pointer-events: none;
-
-    &.circle-center {
-        width: 14.8vw;
-        height: 14.8vw;
+        animation: growAndGlow 0.6s ease forwards;
     }
 
-    &.circle-side {
-        width: 9.5vw;
-        height: 9.5vw;
+    .avatar-img-side {
+        width: 10.2vw;
+        height: 10.2vw;
+        border-radius: 50%;
+        object-fit: cover;
+        opacity: 0.85;
+        z-index: 1;
+        animation: growAndGlow 0.6s ease forwards;
+
     }
 
-    &.circle-expand-center {
-        animation: circleGrowAndGlowCenter 1.2s ease forwards;
+    @keyframes circleGrowAndGlowCenter {
+        0% {
+            transform: scale(0);
+            opacity: 0;
+            box-shadow: none;
+        }
+
+        100% {
+            transform: scale(1);
+            opacity: 1;
+            box-shadow:
+                0 0 25px rgba(166, 78, 255, 0.25),
+                0 0 35px rgba(166, 78, 255, 0.15);
+        }
+    }
+
+    @keyframes circleGrowAndGlowSide {
+        0% {
+            transform: scale(0);
+            opacity: 0;
+            box-shadow: none;
+        }
+
+        100% {
+            transform: scale(1);
+            opacity: 1;
+            box-shadow:
+                0 0 12px rgba(255, 255, 255, 0.10),
+                0 0 18px rgba(255, 255, 255, 0.07);
+        }
+    }
+
+
+
+    .avatar-grow-center {
+        animation: growAndGlowCenter 0.8s ease-out forwards;
+        animation-delay: 0.1s;
+    }
+
+    .avatar-grow-side {
+        animation: growAndGlowSide 0.8s ease-out forwards;
         animation-delay: 0.2s;
     }
 
-    &.circle-expand-side {
-        animation: circleGrowAndGlowSide 1.2s ease forwards;
-        animation-delay: 0.6s;
+    @keyframes fadeScaleIn {
+        to {
+            opacity: 1;
+            transform: scale(1);
+        }
     }
-}
 
-.avatar-wrapper:nth-child(1),
-.avatar-wrapper:nth-child(3) {
-    transform: translateY(15px);
-}
-
-.mensaje-seleccion {
-    font-family: 'Poppins', sans-serif !important;
-    font-size: 24px;
-    color: #f0f0f0;
-    text-align: center;
-    position: absolute;
-    top: 68%;
-    left: 50%;
-    transform: translateX(-50%);
-    max-width: 90vw;
-    opacity: 0;
-    animation: fadeIn 0.9s ease-out forwards;
-    animation-delay: 0.5s;
-    font-weight: 600;
-}
-
-
-@keyframes fadeIn {
-    to {
-        opacity: 1;
+    .avatar-fade-center {
+        opacity: 0;
+        transform: scale(0.6);
+        animation: fadeScaleIn 0.9s ease forwards;
     }
-}
 
-@import url('https://fonts.googleapis.com/css2?family=Oxanium:wght@300;400;700&display=swap');
-
-
-.avatar-grow-center {
-    animation: growAndGlowCenter 0.8s ease-out forwards;
-    animation-delay: 0.1s;
-}
-
-.avatar-grow-side {
-    animation: growAndGlowSide 0.8s ease-out forwards;
-    animation-delay: 0.2s;
-}
-
-@keyframes fadeScaleIn {
-    to {
-        opacity: 1;
-        transform: scale(1);
+    .avatar-fade-side {
+        opacity: 0;
+        transform: scale(0.6);
+        animation: fadeScaleIn 0.9s ease forwards;
+        animation-delay: 0.2s;
     }
-}
 
-.avatar-fade-center {
-    opacity: 0;
-    transform: scale(0.6);
-    animation: fadeScaleIn 0.9s ease forwards;
-}
-
-.avatar-fade-side {
-    opacity: 0;
-    transform: scale(0.6);
-    animation: fadeScaleIn 0.9s ease forwards;
-    animation-delay: 0.2s;
-}
-
-.avatar-wrapper {
-    position: relative;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.avatar-wrapper:nth-child(1),
-.avatar-wrapper:nth-child(3) {
-    transform: translateY(15px);
-}
-
-.mensaje-seleccion {
-    font-family: 'Poppins', sans-serif !important;
-    font-size: 24px;
-    color: #f0f0f0;
-    text-align: center;
-    position: absolute;
-    top: 70%;
-    left: 50%;
-    transform: translateX(-50%);
-    max-width: 90vw;
-    opacity: 0;
-    animation: fadeIn 0.9s ease-out forwards;
-    animation-delay: 1s;
-    font-weight: 600;
-}
-
-
-@keyframes fadeIn {
-    to {
-        opacity: 1;
+    .avatar-wrapper {
+        position: relative;
+        display: flex;
+        align-items: center;
+        justify-content: center;
     }
-}
-
-.avatar-wrapper {
-    transition: transform 0.3s ease-in-out;
-    cursor: pointer;
-    will-change: transform;
-}
-
-.avatar-wrapper.center:hover {
-    transform: translateY(-6px);
-}
-
-.avatar-wrapper.side:hover {
-    transform: translateY(12px);
-}
 
 
-.telon {
-    position: fixed;
-    top: -100%;
-    left: 0;
-    width: 100vw;
-    height: 100vh;
-    background: rgb(255, 255, 255);
-    z-index: 9999;
-    transition: top 1.4s ease;
-    pointer-events: none;
-}
+    .avatar-circle {
+        position: absolute;
+        background-color: rgba(0, 0, 0, 0);
+        border-radius: 50%;
+        opacity: 0;
+        transform: scale(0);
+        z-index: 1;
+        pointer-events: none;
 
-.telon.bajar {
-    top: 0;
-}
+        &.circle-center {
+            width: 14.8vw;
+            height: 14.8vw;
+        }
 
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap');
+        &.circle-side {
+            width: 9.5vw;
+            height: 9.5vw;
+        }
 
-.btn-regresar {
-    position: absolute;
-    top: 20px;
-    left: 20px;
-    z-index: 50;
-    padding: 10px 20px;
-    background: rgba(255, 255, 255, 0.1);
-    border: none;
-    border-radius: 2rem;
-    color: #fff;
-    font-family: 'Oxanium', sans-serif;
-    font-weight: 500;
-    font-size: 14px;
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    backdrop-filter: blur(8px);
-    box-shadow:
-        inset 0 1px 2px rgba(255, 255, 255, 0.1),
-        inset 0 -2px 4px rgba(0, 0, 0, 0.25),
-        0 4px 12px rgba(0, 0, 0, 0.3);
-    cursor: pointer;
-    transition: all 0.3s ease;
-    opacity: 0;
-    transform: translateX(-100px);
-    font-family: 'Poppins', sans-serif !important;
+        &.circle-expand-center {
+            animation: circleGrowAndGlowCenter 1.2s ease forwards;
+            animation-delay: 0.2s;
+        }
 
-}
+        &.circle-expand-side {
+            animation: circleGrowAndGlowSide 1.2s ease forwards;
+            animation-delay: 0.6s;
+        }
+    }
 
-.btn-regresar:hover {
-    transform: translateY(-2px);
-    box-shadow:
-        inset 0 1px 2px rgba(255, 255, 255, 0.15),
-        inset 0 -3px 5px rgba(0, 0, 0, 0.35),
-        0 6px 16px rgba(0, 0, 0, 0.4);
-}
+    .avatar-wrapper:nth-child(1),
+    .avatar-wrapper:nth-child(3) {
+        transform: translateY(15px);
+    }
 
-.animar-entrada {
-    animation: slideInLeft 0.8s ease-out forwards;
-    animation-delay: 0.5s;
-}
+    .mensaje-seleccion {
+        font-family: 'Poppins', sans-serif !important;
+        font-size: 24px;
+        color: #f0f0f0;
+        text-align: center;
+        position: absolute;
+        top: 68%;
+        left: 50%;
+        transform: translateX(-50%);
+        max-width: 90vw;
+        opacity: 0;
+        animation: fadeIn 0.9s ease-out forwards;
+        animation-delay: 0.5s;
+        font-weight: 600;
+    }
 
-@keyframes slideInLeft {
-    0% {
+
+    @keyframes fadeIn {
+        to {
+            opacity: 1;
+        }
+    }
+
+    @import url('https://fonts.googleapis.com/css2?family=Oxanium:wght@300;400;700&display=swap');
+
+
+    .avatar-grow-center {
+        animation: growAndGlowCenter 0.8s ease-out forwards;
+        animation-delay: 0.1s;
+    }
+
+    .avatar-grow-side {
+        animation: growAndGlowSide 0.8s ease-out forwards;
+        animation-delay: 0.2s;
+    }
+
+    @keyframes fadeScaleIn {
+        to {
+            opacity: 1;
+            transform: scale(1);
+        }
+    }
+
+    .avatar-fade-center {
+        opacity: 0;
+        transform: scale(0.6);
+        animation: fadeScaleIn 0.9s ease forwards;
+    }
+
+    .avatar-fade-side {
+        opacity: 0;
+        transform: scale(0.6);
+        animation: fadeScaleIn 0.9s ease forwards;
+        animation-delay: 0.2s;
+    }
+
+    .avatar-wrapper {
+        position: relative;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .avatar-wrapper:nth-child(1),
+    .avatar-wrapper:nth-child(3) {
+        transform: translateY(15px);
+    }
+
+    .mensaje-seleccion {
+        font-family: 'Poppins', sans-serif !important;
+        font-size: 24px;
+        color: #f0f0f0;
+        text-align: center;
+        position: absolute;
+        top: 70%;
+        left: 50%;
+        transform: translateX(-50%);
+        max-width: 90vw;
+        opacity: 0;
+        animation: fadeIn 0.9s ease-out forwards;
+        animation-delay: 1s;
+        font-weight: 600;
+    }
+
+
+    @keyframes fadeIn {
+        to {
+            opacity: 1;
+        }
+    }
+
+    .avatar-wrapper {
+        transition: transform 0.3s ease-in-out;
+        cursor: pointer;
+        will-change: transform;
+    }
+
+    .avatar-wrapper.center:hover {
+        transform: translateY(-6px);
+    }
+
+    .avatar-wrapper.side:hover {
+        transform: translateY(12px);
+    }
+
+
+    .telon {
+        position: fixed;
+        top: -100%;
+        left: 0;
+        width: 100vw;
+        height: 100vh;
+        background: rgb(255, 255, 255);
+        z-index: 9999;
+        transition: top 1.4s ease;
+        pointer-events: none;
+    }
+
+    .telon.bajar {
+        top: 0;
+    }
+
+    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap');
+
+    .btn-regresar {
+        position: absolute;
+        top: 20px;
+        left: 20px;
+        z-index: 50;
+        padding: 10px 20px;
+        background: rgba(255, 255, 255, 0.1);
+        border: none;
+        border-radius: 2rem;
+        color: #fff;
+        font-family: 'Oxanium', sans-serif;
+        font-weight: 500;
+        font-size: 14px;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        backdrop-filter: blur(8px);
+        box-shadow:
+            inset 0 1px 2px rgba(255, 255, 255, 0.1),
+            inset 0 -2px 4px rgba(0, 0, 0, 0.25),
+            0 4px 12px rgba(0, 0, 0, 0.3);
+        cursor: pointer;
+        transition: all 0.3s ease;
         opacity: 0;
         transform: translateX(-100px);
+        font-family: 'Poppins', sans-serif !important;
+
     }
 
-    100% {
+    .btn-regresar:hover {
+        transform: translateY(-2px);
+        box-shadow:
+            inset 0 1px 2px rgba(255, 255, 255, 0.15),
+            inset 0 -3px 5px rgba(0, 0, 0, 0.35),
+            0 6px 16px rgba(0, 0, 0, 0.4);
+    }
+
+    .animar-entrada {
+        animation: slideInLeft 0.8s ease-out forwards;
+        animation-delay: 0.5s;
+    }
+
+    @keyframes slideInLeft {
+        0% {
+            opacity: 0;
+            transform: translateX(-100px);
+        }
+
+        100% {
+            opacity: 1;
+            transform: translateX(0);
+        }
+    }
+
+    .descripcion-avatar {
+        font-family: 'Oxanium', sans-serif;
+        font-size: 20px;
+        color: white;
+        text-align: center;
+        position: absolute;
+        top: 62%;
+        left: 50%;
+        transform: translate(-50%, 20px);
+        opacity: 0;
+        font-weight: 550;
+        animation: subirYMostrar 0.5s ease-out forwards;
+    }
+    
+    .descripcion-avatar.animar {
+        animation: none;
+    }
+    
+    @keyframes subirYMostrar {
+        from {
+        opacity: 0;
+        transform: translate(-50%, 20px);
+        }
+    
+        to {
         opacity: 1;
-        transform: translateX(0);
+        transform: translate(-50%, 0);
+        }
     }
-}
-
-.descripcion-avatar {
-    font-family: 'Oxanium', sans-serif;
-    font-size: 20px;
-    color: white;
-    text-align: center;
-    position: absolute;
-    top: 62%;
-    left: 50%;
-    transform: translate(-50%, 20px);
-    opacity: 0;
-    font-weight: 550;
-    animation: subirYMostrar 0.5s ease-out forwards;
-  }
-  
-  .descripcion-avatar.animar {
-    animation: none;
-  }
-  
-  @keyframes subirYMostrar {
-    from {
-      opacity: 0;
-      transform: translate(-50%, 20px);
-    }
-  
-    to {
-      opacity: 1;
-      transform: translate(-50%, 0);
-    }
-  }

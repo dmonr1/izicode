@@ -5,10 +5,30 @@
     <span nz-icon nzType="caret-left" nzTheme="outline"></span>
     Volver
   </button>
+
   <div class="overlay"></div>
 
-  <p class="frase-escritura">
-    <span id="linea1"></span><br>
-    <span id="linea2"></span>
-  </p>
+  <!-- Texto centrado, más abajo -->
+  <div class="texto-central">
+    <p class="frase-escritura">
+      <span id="linea1"></span><br>
+      <span id="linea2"></span>
+    </p>
+  </div>
+
+  <!-- Contenedor pantalla de video estilo TV pequeña -->
+  <div class="pantalla-video" *ngIf="mostrarPantallaVideo" [class.animar]="mostrarPantallaVideo">
+  <div class="video-wrapper" *ngIf="videoActual">
+    <video #pantallaVideo
+           autoplay
+           playsinline
+           [muted]="videoActual.muted"
+           (loadedmetadata)="ajustarVolumen()"
+           (ended)="reproducirSiguienteVideo()"
+           > 
+      <source [src]="videoActual.src" type="video/mp4" />
+    </video>
+  </div>
+</div>
+
 </div>
