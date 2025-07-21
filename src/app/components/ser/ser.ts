@@ -208,11 +208,10 @@ export class Ser implements OnInit {
   }
 
   mostrarBotonContinuar = false;
-
-  continuar() {
-    // Aquí defines a dónde debe ir. Puede ser otra ruta o cerrar el módulo.
-    console.log('🔜 Continuar presionado');
-    // this.router.navigate(['/otra-ruta']);
-  }
   
+  continuar() {
+    this.audioFondo.pause();
+    this.audioFondo.currentTime = 0;
+    this.router.navigate(['/fin']);
+  }
 }

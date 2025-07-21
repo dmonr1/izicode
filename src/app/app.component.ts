@@ -25,7 +25,7 @@ export class AppComponent implements OnInit {
   }
 
   isLoginPage(): boolean {
-    return this.router.url === '/inicio' || this.router.url === '/login' || this.router.url === '/core' || this.router.url === '/feliz' || this.router.url === '/ser' ||this.router.url === '/';
+    return this.router.url === '/inicio' || this.router.url === '/fin' || this.router.url === '/login' || this.router.url === '/core' || this.router.url === '/feliz' || this.router.url === '/ser' ||this.router.url === '/';
   }
 
 

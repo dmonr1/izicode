@@ -27,11 +27,33 @@
     </div>
     <p class="descripcion-avatar" [class.animar]="!animarDescripcion">
         {{ descripcionActual }}
-      </p>
+    </p>
 
     <p class="mensaje-seleccion">
         Selecciona el avatar según cómo te sientes
     </p>
+
+    <div class="beba-secreta">
+        <div class="tooltip-beba">¡Oh, encontraste una beba de la suerte!</div>
+    </div>
+    <div class="beba-secreta" (click)="mostrarPopup = true">
+        <div class="tooltip-beba">¡Oh encontraste una beba de la suerte!</div>
+    </div>
+
+    <div class="popup-overlay" *ngIf="mostrarPopup">
+        <div class="popup-contenedor animate-popup">
+          
+          <div class="popup-header">
+            <button class="btn-cerrar" (click)="cerrarPopup()">✕</button>
+          </div>
+      
+          <img src="assets/imgs/beba2.jpg" alt="Beba" class="beba-grande" />
+          <p class="texto-popup">Deja dormir pe. Digo guau guau</p>
+        </div>
+      </div>
+      
+
+
 </div>
 
 <div class="telon" [class.bajar]="iniciarTransicion"></div>

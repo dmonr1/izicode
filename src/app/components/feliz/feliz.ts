@@ -183,6 +183,7 @@ private textoFinal = `A veces siento que no te das cuenta de lo feliz que eres c
 }
 
   accionContinuar() {
-    this.router.navigate(['/otra-pagina']);
-  }
+    this.audioFondo.pause();
+    this.audioFondo.currentTime = 0;
+    this.router.navigate(['/fin']);  }
 }

@@ -162,4 +162,12 @@ export class Login implements OnInit {
     this.router.navigate(['/inicio']);
   }
 
+  mostrarTooltip = false;
+  mostrarBebaImagen = false;
+  mostrarPopup = false;
+
+  cerrarPopup() {
+    this.mostrarPopup = false;
+  }
+  
 }

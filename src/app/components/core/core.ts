@@ -234,7 +234,8 @@ export class Core implements OnInit {
   }
 
   irAlFinal() {
-    console.log('Continuar al siguiente paso...');
-  }
+    this.audioFondo.pause();
+    this.audioFondo.currentTime = 0;
+    this.router.navigate(['/fin']);  }
 
 }

@@ -1,0 +1,25 @@
+<div class="pantalla-final">
+    <div class="teleprompter" *ngIf="!mostrarBotones">
+      <div class="texto">
+        <div id="contenedorTexto">{{ texto }}</div>
+      </div>
+    </div>
+  
+    <div class="contenedor-pantalla" *ngIf="!mostrarBotones">
+      <div class="marco-pantalla">
+        <img *ngIf="imagenActual" [src]="imagenActual" class="imagen visible" />
+      </div>
+    </div>
+  
+    <div class="botones-finales" *ngIf="mostrarBotones">
+      <div class="boton redondo" (click)="repetir()">
+        <nz-icon nzType="play-circle" nzTheme="outline"></nz-icon>
+        <span>Repetir</span>
+      </div>
+      <div class="boton redondo" (click)="irInicio()">
+        <nz-icon nzType="home" nzTheme="outline"></nz-icon>
+        <span>Inicio</span>
+      </div>
+    </div>
+  </div>
+  
