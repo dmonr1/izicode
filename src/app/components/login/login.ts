@@ -24,7 +24,7 @@ export class Login implements OnInit {
   descripcionesAvatar: { [key: string]: string } = {
     'assets/imgs/nico-feliz.png': 'Feliz',
     'assets/imgs/nico-core.png': 'Core',
-    'assets/imgs/nico-ser.png': 'Amor'
+    'assets/imgs/nico-ser.png': 'Amada'
   };
 
   currentIndex = 1;

@@ -1,38 +1,71 @@
 <div class="telon-login" *ngIf="mostrarTelon"></div>
 
-<div class="pantalla-bloqueo" *ngIf="mostrarBloqueo">
+<div class="pantalla-bloqueo" *ngIf="mostrarBloqueo" [class.desaparecer]="animarSalidaBloqueo">
   <div class="bloqueo-superior">
     <p class="titulo-bloqueo">Ingresa el código</p>
+    <p class="titulo-bloqueo">Mes primer concierto + Mes tu cumpleaños + Mes de mi cumpleaños</p>
 
     <div class="puntos-clave">
-      <span *ngFor="let punto of [0,1,2,3,4,5]; let i = index"
-            [class.activo]="i < claveIngresada.length"></span>
+      <span *ngFor="let punto of [0,1,2,3,4,5]; let i = index" [class.activo]="i < claveIngresada.length"></span>
     </div>
   </div>
-
   <div class="bloqueo-centro">
     <div class="teclado-numerico">
-      <button *ngFor="let n of ['1','2','3','4','5','6','7','8','9']" (click)="ingresarNumero(n)">
+      <button *ngFor="let n of ['1','2','3','4','5','6','7','8','9']" [id]="'btn-' + n" (click)="ingresarNumero(n)"
+        [attr.aria-label]="'Número ' + n">
         {{ n }}
       </button>
       <div class="espacio"></div>
-      <button (click)="ingresarNumero('0')">0</button>
-      <button class="borrar" (click)="borrarUltimo()">⌫</button>
+      <button id="btn-0" (click)="ingresarNumero('0')" aria-label="Número 0">0</button>
+      <button class="borrar" id="btn-borrar" (click)="borrarUltimo()" aria-label="Borrar último número">
+        ⌫
+      </button>
     </div>
   </div>
+  <div class="acciones-bajo-teclado">
+    <span class="accion" (click)="accionEmergencia()">Emergencia</span>
+    <span class="accion" (click)="volverAlLogin()">Volver</span>
+  </div>
 </div>
-
-
-
 <div class="cont-general" *ngIf="!mostrarBloqueo">
   <button nz-button nzType="default" class="btn-volver" (click)="volverAlLogin()">
     <span nz-icon nzType="caret-left" nzTheme="outline"></span>
     Volver
   </button>
+  <button nz-button nzType="default" class="btn-continuar" *ngIf="mostrarBotonContinuar" (click)="continuar()">
+    Continuar
+    <span nz-icon nzType="caret-right" nzTheme="outline"></span>
+  </button>
   <div class="overlay"></div>
-
-  <p class="frase-escritura">
+  <p class="frase-escritura" [class.mover-arriba]="animarFrase">
     <span id="linea1"></span><br>
     <span id="linea2"></span>
   </p>
+
+  <div class="galeria-videos" *ngIf="mostrarGaleria">
+    <!-- Columna izquierda -->
+    <div class="columna">
+      <video class="gal gal-1" src="/assets/vids/vid6.mp4" muted></video>
+      <img class="gal-3" src="/assets/imgs/img1.jpg" alt=""> <!-- Imagen izquierda (2) -->
+      <img class="gal-5" src="/assets/imgs/img2.jpg" alt=""> <!-- Imagen izquierda (3) -->
+    </div>
+
+    <!-- Columna central -->
+    <div class="columna">
+      <video class="gal-8 video-vertical" src="/assets/vids/vid8.mp4" muted></video>
+      <!-- Video central -->
+      <img class="gal-6" src="/assets/imgs/img3.jpg" alt=""> <!-- Imagen central -->
+    </div>
+
+    <!-- Columna derecha -->
+    <div class="columna">
+      <video class="gal-2" src="/assets/vids/vid7.mp4" muted></video> <!-- Video derecho -->
+      <img class="gal-4" src="/assets/imgs/img4.jpg" alt=""> <!-- Imagen derecha (2) -->
+      <div class="contenedor-ajustado gal-7"> <!-- Imagen derecha (3) -->
+        <img src="/assets/imgs/img5.jpg" alt="">
+      </div>
+    </div>
+
+  </div>
+
 </div>
