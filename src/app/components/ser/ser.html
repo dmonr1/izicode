@@ -1,6 +1,30 @@
 <div class="telon-login" *ngIf="mostrarTelon"></div>
 
-<div class="cont-general">
+<div class="pantalla-bloqueo" *ngIf="mostrarBloqueo">
+  <div class="bloqueo-superior">
+    <p class="titulo-bloqueo">Ingresa el código</p>
+
+    <div class="puntos-clave">
+      <span *ngFor="let punto of [0,1,2,3,4,5]; let i = index"
+            [class.activo]="i < claveIngresada.length"></span>
+    </div>
+  </div>
+
+  <div class="bloqueo-centro">
+    <div class="teclado-numerico">
+      <button *ngFor="let n of ['1','2','3','4','5','6','7','8','9']" (click)="ingresarNumero(n)">
+        {{ n }}
+      </button>
+      <div class="espacio"></div>
+      <button (click)="ingresarNumero('0')">0</button>
+      <button class="borrar" (click)="borrarUltimo()">⌫</button>
+    </div>
+  </div>
+</div>
+
+
+
+<div class="cont-general" *ngIf="!mostrarBloqueo">
   <button nz-button nzType="default" class="btn-volver" (click)="volverAlLogin()">
     <span nz-icon nzType="caret-left" nzTheme="outline"></span>
     Volver

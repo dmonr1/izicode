@@ -16,17 +16,14 @@ export class Ser implements OnInit {
   private audio = new Audio('/assets/videoplayback.mp3');
   private audioFondo = new Audio('/assets/sounds/fondo2.mp3');
   private reproduciendo = false;
+  mostrarBloqueo = true;
+  claveIngresada = '';
 
-  constructor(private router: Router) {}
+  constructor(private router: Router) { }
 
-  ngOnInit() {
-    this.audioFondo.loop = true;
-    this.audioFondo.volume = 0.6;
-    this.audioFondo.play().catch(() => { });
-    setTimeout(() => {
-      this.iniciarEscritura();
-    }, 500);
-  }
+ngOnInit() {
+  // No reproducir sonido ni iniciar escritura hasta después del login
+}
 
   iniciarEscritura() {
     this.audio.loop = true;
@@ -76,6 +73,39 @@ export class Ser implements OnInit {
     this.audioFondo.currentTime = 0;
     this.router.navigate(['/login']); // Cambia la ruta si usas otra
   }
+
+  ingresarNumero(numero: string) {
+  if (this.claveIngresada.length < 6) {
+    this.claveIngresada += numero;
+    if (this.claveIngresada.length === 6) {
+      setTimeout(() => {
+        this.verificarClave();
+      }, 300);
+    }
+  }
+}
+
+borrarUltimo() {
+  this.claveIngresada = this.claveIngresada.slice(0, -1);
+}
+
+verificarClave() {
+  if (this.claveIngresada === '123456') {
+    this.mostrarBloqueo = false;
+    this.mostrarTelon = true;
+
+    // Ahora sí, empieza música de fondo y escritura
+    this.audioFondo.loop = true;
+    this.audioFondo.volume = 0.6;
+    this.audioFondo.play().catch(() => { });
+
+    setTimeout(() => this.iniciarEscritura(), 500);
+  } else {
+    this.claveIngresada = '';
+    // Aquí podrías añadir feedback visual o sonido de error si quieres
+  }
+}
+
 
 
 }

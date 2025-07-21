@@ -16,14 +16,15 @@ export class Login implements OnInit {
 
   avatars: string[] = [
     'assets/imgs/nico-feliz.png',
-    'assets/imgs/nico-ser.png',
     'assets/imgs/nico-core.png',
+    'assets/imgs/nico-ser.png',
+
   ];
 
   descripcionesAvatar: { [key: string]: string } = {
     'assets/imgs/nico-feliz.png': 'Feliz',
-    'assets/imgs/nico-ser.png': 'Ser',
-    'assets/imgs/nico-core.png': 'Core'
+    'assets/imgs/nico-core.png': 'Core',
+    'assets/imgs/nico-ser.png': 'Amor'
   };
 
   currentIndex = 1;
@@ -140,9 +141,9 @@ export class Login implements OnInit {
     switch (avatar) {
       case 'assets/imgs/nico-feliz.png':
         return '/feliz';
-      case 'assets/imgs/nico-ser.png':
-        return '/core';
       case 'assets/imgs/nico-core.png':
+        return '/core';
+      case 'assets/imgs/nico-ser.png':
         return '/ser';
       default:
         return null;
